@@ -2,7 +2,6 @@
   order: sorted
   
   tasks:
-  - name: Yum
     yum:
       name: '*'
       state: latest
