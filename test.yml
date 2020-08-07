@@ -1,40 +1,43 @@
-tasks:
-- name: Yum
-  yum:
-    name: '*'
-    state: latest
-
-- name: Set Timezone
-  timezone:
+- hosts: all
+  order: sorted
+  
+  tasks:
+  - name: Yum
+    yum:
+      name: '*'
+      state: latest
+      
+  - name: Set Timezone
+    timezone:
     name: Australia/Sydney
 
-- name: Wheel group
-  group:
-    name: wheel
-    state: present
+  - name: Wheel group
+    group:
+      name: wheel
+      state: present
 
-- name: Devs Group
-  group:
-    name: devs
-    state: present
+  - name: Devs Group
+    group:
+      name: devs
+      state: present
 
-- name: Sudo for Devs
-  copy:
-    content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
-    dest: /etc/sudoers.d/devs
-    mode: 0440
+  - name: Sudo for Devs
+    copy:
+      content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
+      dest: /etc/sudoers.d/devs
+      mode: 0440
 
-- name: Add user
-  user:
-    name: jasonw
-    comment: Jason Winters
-    create_home: true
-    groups: devs
-    shell: bin/bash
-    state: present
+  - name: Add user
+    user:
+      name: jasonw
+      comment: Jason Winters
+      create_home: true
+      groups: devs
+      shell: bin/bash
+      state: present
 
-- name: Set authorized_keys
-  authorized_key:
-    user: jasonw
-    state: present
-    key: https://github.com/jasonk9/playbook_test/jasonw.pub
+  - name: Set authorized_keys
+    authorized_key:
+      user: jasonw
+      state: present
+      key: https://github.com/jasonk9/playbook_test/jasonw.pub
