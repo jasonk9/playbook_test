@@ -6,28 +6,19 @@
     yum:
       name: '*'
       state: latest
-      
-  - name: Set Timezone
+
     timezone:
-    name: Australia/Sydney
+      name: Australia/Sydney
 
-  - name: Wheel group
-    group:
-      name: wheel
-      state: present
-
-  - name: Devs Group
     group:
       name: devs
       state: present
 
-  - name: Sudo for Devs
     copy:
       content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
       dest: /etc/sudoers.d/devs
       mode: 0440
 
-  - name: Add user
     user:
       name: jasonw
       comment: Jason Winters
@@ -36,7 +27,6 @@
       shell: bin/bash
       state: present
 
-  - name: Set authorized_keys
     authorized_key:
       user: jasonw
       state: present
