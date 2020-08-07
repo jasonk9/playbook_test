@@ -35,5 +35,5 @@
 - name: Set authorized_keys
   authorized_key:
     user: jasonw
-      state: present
-      key: https://github.com/jasonk9/playbook_test/jasonw.pub
+    state: present
+    key: https://github.com/jasonk9/playbook_test/jasonw.pub
