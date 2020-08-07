@@ -1,37 +1,36 @@
 - hosts: all
 
-tasks:
-  - name: update_system
-    yum:
-      name: '*'
-      state: latest
+  tasks:
+    - name: update_system
+      yum:
+        name: '*'
+        state: latest
 
-  - name: set_timezone
-    timezone:
-      name: Australia/Sydney
+    - name: set_timezone
+      timezone:
+        name: Australia/Sydney
 
-  - name: create_devs_group
-    group:
-      name: devs
-      state: present
+    - name: create_devs_group
+      group:
+        name: devs
+        state: present
 
-  - name: create_sudoers
-    copy:
-      content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
-      dest: /etc/sudoers.d/devs
-      mode: 0440
+    - name: create_sudoers
+      copy:
+        content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
+        dest: /etc/sudoers.d/devs
+        mode: 0440
 
-  - name: add_jason
-    user:
-      name: jasonw
-      comment: Jason Winters
-      create_home: true
-      groups: devs
-      shell: bin/bash
-      state: present
+    - name: add_jason
+      user:
+        name: jasonw
+        comment: Jason Winters
+        create_home: true
+        groups: devs
+        state: present
 
-  - name: add_ssh_key_jason
-    authorized_key:
-      user: jasonw
-      state: present
-      key: https://github.com/jasonk9/playbook_test/jasonw.pub
+    - name: add_ssh_key_jason
+      authorized_key:
+        user: jasonw
+        state: present
+        key: https://github.com/jasonk9/playbook_test/jasonw.pub
