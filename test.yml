@@ -1,32 +1,32 @@
-- hosts: all
-  order: sorted
+-name: Developer Solutions Jumpbox Configuration
+hosts: all
   
-  tasks:
-    yum:
-      name: '*'
-      state: latest
+tasks:
+  yum:
+    name: '*'
+    state: latest
 
-    timezone:
-      name: Australia/Sydney
+  timezone:
+    name: Australia/Sydney
 
-    group:
-      name: devs
-      state: present
+  group:
+    name: devs
+    state: present
 
-    copy:
-      content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
-      dest: /etc/sudoers.d/devs
-      mode: 0440
+  copy:
+    content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
+    dest: /etc/sudoers.d/devs
+    mode: 0440
 
-    user:
-      name: jasonw
-      comment: Jason Winters
-      create_home: true
-      groups: devs
-      shell: bin/bash
-      state: present
+  user:
+    name: jasonw
+    comment: Jason Winters
+    create_home: true
+    groups: devs
+    shell: bin/bash
+    state: present
 
-    authorized_key:
-      user: jasonw
-      state: present
-      key: https://github.com/jasonk9/playbook_test/jasonw.pub
+  authorized_key:
+    user: jasonw
+    state: present
+    key: https://github.com/jasonk9/playbook_test/jasonw.pub
