@@ -13,4 +13,4 @@
       authorized_key:
         user: jasonw
         state: present
-        key: https://github.com/jasonk9/playbook_test/tree/master/accounts/jasonw.pub
+        key: "{{ lookup( 'file', './jason.pub' ) }}"
