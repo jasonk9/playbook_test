@@ -12,6 +12,6 @@
 
     - name: create_sudoers
       copy:
-        content: 'devs ALL=(ALL:ALL) NOPASSWD:ALL'
+        content: '%devs ALL=(ALL:ALL) NOPASSWD:ALL'
         dest: /etc/sudoers.d/devs
         mode: 0440
