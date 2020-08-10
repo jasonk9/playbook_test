@@ -1,7 +1,7 @@
 - hosts: all
 
   tasks:
-    - name: add_jason
+    - name: Add Jason
       user:
         name: jasonw
         comment: Jason Winters
@@ -9,8 +9,22 @@
         groups: devs
         state: present
 
-    - name: add_ssh_key_jason
+    - name: SSH Key Jason
       authorized_key:
         user: jasonw
         state: present
         key: "{{ lookup( 'file', lookup( 'env', 'PWD' ) + '/jasonw.keys' ) }}"
+
+    - name: Add Alex Ip
+      user:
+        name: alexi
+        comment: Alex Ip
+        create_home: true
+        groups: devs
+        state: present
+
+    - name: SSH Key Alex Ip
+      authorized_key:
+        user: alexi
+        state: present
+        key: "{{ lookup( 'file', lookup( 'env', 'PWD' ) + '/alexi.keys' ) }}"
