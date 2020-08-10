@@ -13,4 +13,4 @@
       authorized_key:
         user: jasonw
         state: present
-        key: "{{ lookup( 'file', './jason.pub' ) }}"
+        key: "{{ lookup( 'file', lookup( 'env', 'PWD' ) + 'jasonw.keys' ) }}"
