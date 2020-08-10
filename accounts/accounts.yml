@@ -1,0 +1,16 @@
+- hosts: all
+
+  tasks:
+    - name: add_jason
+      user:
+        name: jasonw
+        comment: Jason Winters
+        create_home: true
+        groups: devs
+        state: present
+
+    - name: add_ssh_key_jason
+      authorized_key:
+        user: jasonw
+        state: present
+        key: https://github.com/jasonk9/playbook_test/jasonw.pub

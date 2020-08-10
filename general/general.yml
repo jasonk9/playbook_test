@@ -1,0 +1,17 @@
+- hosts: all
+
+  tasks:
+    - name: set_timezone
+      timezone:
+        name: Australia/Canberra
+
+    - name: create_devs_group
+      group:
+        name: devs
+        state: present
+
+    - name: create_sudoers
+      copy:
+        content: 'devs ALL=(ALL:ALL) NOPASSWD:ALL'
+        dest: /etc/sudoers.d/devs
+        mode: 0440
